@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block content%}
+
+<nav class="navbar navbar-expand-lg navbar navbar-dark bg-primary">
+    <a class="navbar-brand" href="{{url_for('index')}}">Oglasi</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a class="nav-link active" href="{{url_for('index')}}" role="button">Oglasi <span></span></a>
+        </li> 
+        <li class="nav-item">
+            <a class="nav-link" href="{{url_for('login')}}" role="button">Uloguj se <span></span></a>
+        </li> 
+        </ul>
+        <!-- <form class="form-inline">
+            <button class="btn btn-primary" type="submit">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </form> -->
+    </div>
+</nav>
+
+<div class="card-columns">
+    {% for oglas in oglasi %}
+	<div class="card">
+		<div class="card-body">
+            <img src="../static/slike/{{ oglas.slika }}" class="card-img-top img-fluid" alt=""> 
+            <div class="card-block">
+                <h5 class="card-title">{{oglas.naslov}}</h5>
+			    <p class="card-text">{{oglas.tekst}}</p>
+			    <p class="card-text">
+				    <small class="text-muted">Autor: {{oglas.korisnicko_ime}}</small>
+                </p>
+                <p class="card-text">
+				    <small class="text-muted">Ime: {{oglas.ime}}</small>
+                </p>
+                <p class="card-text">
+				    <small class="text-muted">Prezime: {{oglas.prezime}}</small>
+                </p>
+                <p class="card-text">
+				    <small class="text-muted">Kontakt: {{oglas.kontakt}}</small>
+                </p>
+                <p class="card-text">
+				    <small class="text-muted">Email: {{oglas.email}}</small>
+                </p>
+                {% if oglas.polovno==1 %}
+                <p class="card-text">
+				    <small class="text-muted">Polovno</small>
+                </p>
+                {% else %}
+                <p class="card-text">
+				    <small class="text-muted">Novo</small>
+                </p>
+                {% endif %}
+                <p class="card-text">
+				    <small class="text-muted">Kategorija:{{oglas.kategorija}}</small>
+                </p>
+                <p class="card-text">
+				    <small class="text-muted">Mesto{{oglas.mesto}}</small>
+                </p>
+                <p class="card-text">
+				    <small class="text-muted">Cena{{oglas.cena}}</small>
+			    </p>
+			    <p class="card-text">
+				    <small class="text-muted">{{oglas.dan}} {{oglas.datum}}</small>
+			    </p>
+			    <!-- <a href="#" class="btn btn-primary">Naruci</a> -->
+            </div>
+		</div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
